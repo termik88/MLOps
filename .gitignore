@@ -48,7 +48,7 @@ testdata/
 stats.pkl
 
 # Игнорирование папк и файлов проекта
-train/
-test/
+# train/
+# test/
 venv/
 state.pkl
