@@ -34,4 +34,4 @@ echo "Запуск model_preparation.py..."
 python model_preparation.py
 
 echo "Запуск model_testing.py..."
-python model_testing.py
+pytest model_test.py
