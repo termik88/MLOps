@@ -1,16 +1,18 @@
+from state import load_state
 from sklearn.metrics import mean_squared_error as MSE
 from sklearn.linear_model import LinearRegression
-from data_preprocessing import get_scaler_data
 
-X_train_scaled, X_test_scaled, target_train, target_test = get_scaler_data()
+
+# Читаем объект из файла
+state = load_state()
 
 # Создаем объект модели линейной регрессии
 model = LinearRegression()
 
 # Обучаем модель на нормализованных данных
-model.fit(X_train_scaled, target_train)
+model.fit(state.X_train_scaled, state.target_train)
 
 # Предсказываем значения на тестовой выборке
-target_pred = model.predict(X_test_scaled)
+target_pred = model.predict(state.X_test_scaled)
 
-print(f'\nMSE: {MSE(target_pred, target_test).round(2)}')
+print(f'\nMSE: {MSE(target_pred, state.target_test).round(2)}')
