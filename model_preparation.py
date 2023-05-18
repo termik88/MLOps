@@ -1,11 +1,8 @@
-from libraries import get_lib
+from sklearn.metrics import mean_squared_error as MSE
+from sklearn.linear_model import LinearRegression
+from data_preprocessing import get_scaler_data
 
-pd, LinearRegression, MSE = get_lib()
-
-X_train_scaled = pd.read_csv('scaler/X_train_scaled.csv', delimiter=',')
-X_test_scaled = pd.read_csv('scaler/X_test_scaled.csv', delimiter=',')
-target_train = pd.read_csv('target/target_train.csv', delimiter=',')
-target_test = pd.read_csv('target/target_test.csv', delimiter=',')
+X_train_scaled, X_test_scaled, target_train, target_test = get_scaler_data()
 
 # Создаем объект модели линейной регрессии
 model = LinearRegression()
@@ -17,5 +14,3 @@ model.fit(X_train_scaled, target_train)
 target_pred = model.predict(X_test_scaled)
 
 print(f'\nMSE: {MSE(target_pred, target_test).round(2)}')
-
-target_pred.to_csv('predict/target_pred.csv', index=False)

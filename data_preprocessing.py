@@ -1,6 +1,5 @@
-from libraries import get_lib
-
-pd, StandardScaler = get_lib()
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
 
 train_data = pd.read_csv('train/train.csv', delimiter=',')
 test_data = pd.read_csv('test/test.csv', delimiter=',')
@@ -22,7 +21,5 @@ X_train_scaled = scaler.fit_transform(X_train)
 # Применяем стандартизацию на тестовой выборке
 X_test_scaled = scaler.transform(X_test)
 
-X_train_scaled.to_csv('slacer/X_train_scaled.csv', index=False)
-X_test_scaled.to_csv('slacer/X_test_scaled.csv', index=False)
-target_train.to_csv('target/target_train.csv', index=False)
-target_test.to_csv('target/target_test.csv', index=False)
+def get_scaler_data():
+    return X_train_scaled, X_test_scaled, target_train, target_test

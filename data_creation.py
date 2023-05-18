@@ -1,6 +1,5 @@
-from libraries import get_lib
-
-np, pd = get_lib()
+import numpy as np
+import pandas as pd
 
 np.random.seed(1)
 sampleSize = 1000
@@ -21,5 +20,8 @@ target = 2 * x + 8 * y + z + 25 * np.random.randn(sampleSize) + e
 df = pd.DataFrame(list(zip(x, y, t, z, target)), columns=['x', 'y', 't', 'z', 'target'])
 df = df.round(0)
 
-df[:700].to_csv('train/train.csv', index=False)
-df[700:].to_csv('test/test.csv', index=False)
+df[:700].to_csv('MLOps/train/train.csv', index=False)
+df[700:].to_csv('MLOps/test/test.csv', index=False)
+
+
+print('gg')
