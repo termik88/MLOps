@@ -1,4 +1,5 @@
 import pickle
+import os
 
 
 # Состояние
@@ -10,13 +11,23 @@ class State:
         self.target_test = None
 
 
+file_name = 'state.pkl'
+
+
+# Получить путь до файлов
+def get_path(current_directory, file_name):
+    return os.path.join(current_directory, file_name)
+
+
 # Функция сохранения состояния в файл
-def save_state(state):
-    with open('state.pkl', 'wb') as file:
+def save_state(current_directory, state):
+    file_path = get_path(current_directory, file_name)
+    with open(file_path, 'wb') as file:
         pickle.dump(state, file)
 
 
 # Читаем объект из файла
-def load_state():
-    with open('state.pkl', 'rb') as file:
+def load_state(current_directory):
+    file_path = get_path(current_directory, file_name)
+    with open(file_path, 'rb') as file:
         return pickle.load(file)

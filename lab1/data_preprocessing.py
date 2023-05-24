@@ -1,6 +1,9 @@
 from state import State, save_state
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+import os
+
+current_directory = os.getcwd()  # текущий рабочий каталог
 
 # Создаем объект класса Stats - для хранения состояния модели
 state = State()
@@ -26,4 +29,4 @@ state.X_train_scaled = scaler.fit_transform(X_train)
 state.X_test_scaled = scaler.transform(X_test)
 
 # Сохраняем объект в файл с помощью pickle
-save_state(state)
+save_state(current_directory, state)
