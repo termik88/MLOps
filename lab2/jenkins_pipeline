@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Generate Data') {
+            steps {
+                echo '----Create Dataset (begin)-----'
+                sh 'python create_dataset.py'
+                echo '----Create Dataset (end)-----'
+            }
+        }
+        
+        
+        stage('Train Model') {
+            steps {
+                echo '----Train the Model (begin)-----'
+                sh 'python train_model.py'
+                echo '----Train the Model (end)-----'
+            }
+        }
+        
+        stage('Use the Model') {
+            steps {
+                echo '----Use the Model for Prediction (begin)-----'
+                sh 'python prediction.py'
+                echo '---Use the Model for Prediction (begin)-----'
+            }
+        }
+    }
+}

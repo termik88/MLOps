@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Activate Virtual Environment') {
+            steps {
+                echo 'Start Activate Virtual Environment'
+                sh './home/termik/vs/MLOps/venv/bin/activate'
+                echo 'End Activate Virtual Environment'
+            }
+        }
+        
+        stage('Install Dependencies') {
+            steps {
+                echo 'Start Install Dependencies'
+                sh 'pip install -r /home/termik/vs/MLOps/lab1/requirements.txt'
+                echo 'End Install Dependencies'
+            }
+        }
+        
+        stage('Generate Data') {
+            steps {
+                echo 'Start generate data'
+                sh 'python /home/termik/vs/MLOps/lab1/data_creation.py'
+                echo 'End generate data'
+            }
+        }
+        
+        stage('Preprocessing') {
+            steps {
+                echo 'Start Preprocessing'
+                sh 'python /home/termik/vs/MLOps/lab1/data_preprocessing.py'
+                echo 'End Preprocessing'
+            }
+        }
+        
+        stage('Model Preparation') {
+            steps {
+                echo 'Start model preparation'
+                sh 'python /home/termik/vs/MLOps/lab1/model_preparation.py'
+                echo 'End model preparation'
+            }
+        }
+    }
+}
