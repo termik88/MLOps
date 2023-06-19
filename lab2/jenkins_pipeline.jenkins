@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Set up environment') {
+            steps {
+                sh "pip install catboost"
+                sh "pip install scikit-learn"
+            }
+        }
+
+        stage('Generate Data') {
+            steps {
+                echo '----Create Dataset (begin)-----'
+                sh 'python3 ./lab2/create_dataset.py'
+                echo '----Create Dataset (end)-----'
+            }
+        }
+        
+        stage('Train Model') {
+            steps {
+                echo '----Train the Model (begin)-----'
+                sh 'python3 ./lab2/train_model.py'
+                echo '----Train the Model (end)-----'
+            }
+        }
+        
+        stage('Use the Model') {
+            steps {
+                echo '----Use the Model for Prediction (begin)-----'
+                sh 'python3 ./lab2/make_prediction.py'
+                echo '---Use the Model for Prediction (begin)-----'
+            }
+        }
+    }
+}
