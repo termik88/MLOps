@@ -29,7 +29,7 @@ pipeline {
         stage('Use the Model') {
             steps {
                 echo '----Use the Model for Prediction (begin)-----'
-                sh 'python3 ./lab2/prediction.py'
+                sh 'python3 ./lab2/make_prediction.py'
                 echo '---Use the Model for Prediction (begin)-----'
             }
         }
