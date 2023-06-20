@@ -1,0 +1,22 @@
+version: '3'
+services:
+  create_dataset:
+    build: ./create_dataset
+    container_name: create_dataset
+    volumes:
+      - ./shared:/shared
+      
+  train_model:
+    build: ./train_model
+    container_name: train_model
+    volumes:
+      - ./shared:/shared
+
+  make_prediction:
+    build: ./make_prediction
+    container_name: make_prediction
+    volumes:
+      - ./shared:/shared
+
+volumes:
+  shared:
