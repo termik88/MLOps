@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-np.random.seed(1)
+np.random.seed(2)
 sampleSize = 1000
 
 # рандомный дата сет
